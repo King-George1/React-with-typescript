@@ -4,6 +4,13 @@ import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
+  private handleCancelConfirmClick = () => {
+    console.log("Cancel Clicked");
+  };
+
+  private handleOkConfirmClick = () => {
+    console.log("Ok clicked");
+  };
   public render() {
     return (
       <div className="App">
@@ -26,6 +33,8 @@ class App extends Component {
           content="Are you sure you want to learn react and typescript?"
           cancelCaption="No way"
           okCaption="Yes please!"
+          onCancelClick={this.handleCancelConfirmClick}
+          onOkClick={this.handleOkConfirmClick}
         />
       </div>
     );
