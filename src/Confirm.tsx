@@ -4,6 +4,8 @@ import "./Confirm.css";
 interface IProps {
   title: string;
   content: string;
+  cancelCaption?: string;
+  okCaption?: string;
 }
 
 class Confirm extends React.Component<IProps> {
@@ -18,8 +20,10 @@ class Confirm extends React.Component<IProps> {
             <p>{this.props.content}</p>
           </div>
           <div className="confirm-buttons-container">
-            <button className="confirm-cancel">Cancel</button>
-            <button className="confirm-ok">Okay</button>
+            <button className="confirm-cancel">
+              {this.props.cancelCaption}
+            </button>
+            <button className="confirm-ok">{this.props.okCaption}</button>
           </div>
         </div>
       </div>
