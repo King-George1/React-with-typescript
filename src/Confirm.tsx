@@ -9,6 +9,10 @@ interface IProps {
 }
 
 class Confirm extends React.Component<IProps> {
+  public static defaultProps = {
+    cancelCaption: "Cancel",
+    okCaption: "Okay",
+  };
   public render() {
     return (
       <div className="confirm-wrapper confirm-visible">

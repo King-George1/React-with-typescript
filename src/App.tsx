@@ -24,6 +24,8 @@ class App extends Component {
         <Confirm
           title="React and TypeScript"
           content="Are you sure you want to learn react and typescript?"
+          cancelCaption="No way"
+          okCaption="Yes please!"
         />
       </div>
     );
