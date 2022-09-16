@@ -21,7 +21,10 @@ class App extends Component {
             Learn React and TypeScript
           </a>
         </header>
-        <Confirm />
+        <Confirm
+          title="React and TypeScript"
+          content="Are you sure you want to learn react and typescript?"
+        />
       </div>
     );
   }
