@@ -3,7 +3,10 @@ import Confirm from "./Confirm";
 import logo from "./logo.svg";
 import "./App.css";
 
-class App extends Component {
+interface IState {
+  confirmOpen: boolean;
+}
+class App extends Component<{}, IState> {
   private handleCancelConfirmClick = () => {
     console.log("Cancel Clicked");
   };
