@@ -8,6 +8,7 @@ interface IProps {
   okCaption?: string;
   onOkClick: () => void;
   onCancelClick: () => void;
+  open: boolean;
 }
 
 class Confirm extends React.Component<IProps> {
@@ -18,7 +19,13 @@ class Confirm extends React.Component<IProps> {
 
   public render() {
     return (
-      <div className="confirm-wrapper confirm-visible">
+      <div
+        className={
+          this.props.open
+            ? "confirm-wrapper confirm-visible"
+            : "confirm-wrapper"
+        }
+      >
         <div className="confirm-container">
           <div className="confirm-title-container">
             <span>{this.props.title}</span>

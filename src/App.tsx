@@ -35,6 +35,7 @@ class App extends Component {
           okCaption="Yes please!"
           onCancelClick={this.handleCancelConfirmClick}
           onOkClick={this.handleOkConfirmClick}
+          open={false}
         />
       </div>
     );
