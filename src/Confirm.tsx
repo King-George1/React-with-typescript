@@ -13,6 +13,13 @@ class Confirm extends React.Component<IProps> {
     cancelCaption: "Cancel",
     okCaption: "Okay",
   };
+  private handleOkClick = () => {
+    console.log("OK clicked", this.props);
+  };
+
+  private handleCancelClick = () => {
+    console.log("Cancel Clicked", this.props);
+  };
   public render() {
     return (
       <div className="confirm-wrapper confirm-visible">
@@ -24,10 +31,12 @@ class Confirm extends React.Component<IProps> {
             <p>{this.props.content}</p>
           </div>
           <div className="confirm-buttons-container">
-            <button className="confirm-cancel">
+            <button className="confirm-cancel" onClick={this.handleCancelClick}>
               {this.props.cancelCaption}
             </button>
-            <button className="confirm-ok">{this.props.okCaption}</button>
+            <button className="confirm-ok" onClick={this.handleOkClick}>
+              {this.props.okCaption}
+            </button>
           </div>
         </div>
       </div>
