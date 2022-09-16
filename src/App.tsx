@@ -5,18 +5,32 @@ import "./App.css";
 
 interface IState {
   confirmOpen: boolean;
+  confirmMessage: string;
 }
 class App extends Component<{}, IState> {
   constructor(props: {}) {
     super(props);
-    this.state = { confirmOpen: true };
+    this.state = {
+      confirmOpen: true,
+      confirmMessage: "Please hit the confirm button",
+    };
   }
   private handleCancelConfirmClick = () => {
-    console.log("Cancel Clicked");
+    this.setState({ confirmOpen: false });
   };
 
   private handleOkConfirmClick = () => {
-    console.log("Ok clicked");
+    this.setState({
+      confirmOpen: true,
+      confirmMessage: "Cool, Carry on Reading",
+    });
+  };
+
+  private handleConfirmClick = () => {
+    this.setState({
+      confirmOpen: true,
+      confirmMessage: "Take a break, I'm sure you will .....",
+    });
   };
   public render() {
     return (
@@ -35,6 +49,8 @@ class App extends Component<{}, IState> {
             Learn React and TypeScript
           </a>
         </header>
+        <p>{this.state.confirmMessage}</p>
+        <button onClick={this.handleConfirmClick}>Confirm</button>
         <Confirm
           title="React and TypeScript"
           content="Are you sure you want to learn react and typescript?"
