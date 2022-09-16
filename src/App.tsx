@@ -7,6 +7,10 @@ interface IState {
   confirmOpen: boolean;
 }
 class App extends Component<{}, IState> {
+  constructor(props: {}) {
+    super(props);
+    this.state = { confirmOpen: true };
+  }
   private handleCancelConfirmClick = () => {
     console.log("Cancel Clicked");
   };
@@ -38,7 +42,7 @@ class App extends Component<{}, IState> {
           okCaption="Yes please!"
           onCancelClick={this.handleCancelConfirmClick}
           onOkClick={this.handleOkConfirmClick}
-          open={false}
+          open={this.state.confirmOpen}
         />
       </div>
     );
