@@ -63,6 +63,9 @@ class App extends Component<{}, IState> {
   componentDidMount() {
     this.timer = window.setInterval(() => this.handleTimerTick(), 1000);
   }
+  public componentWillUnmount() {
+    clearInterval(this.timer);
+  }
   public render() {
     return (
       <div className="App">
