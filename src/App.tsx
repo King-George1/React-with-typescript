@@ -6,17 +6,24 @@ import "./App.css";
 interface IState {
   confirmOpen: boolean;
   confirmMessage: string;
+  confirmVisible: boolean;
+  countDown: number;
 }
 class App extends Component<{}, IState> {
+  private timer: number = 0;
+
   constructor(props: {}) {
     super(props);
     this.state = {
-      confirmOpen: true,
+      confirmOpen: false,
       confirmMessage: "Please hit the confirm button",
+      confirmVisible: true,
+      countDown: 10,
     };
   }
   private handleCancelConfirmClick = () => {
     this.setState({ confirmOpen: false });
+    clearInterval(this.timer);
   };
 
   private handleOkConfirmClick = () => {
@@ -24,6 +31,7 @@ class App extends Component<{}, IState> {
       confirmOpen: true,
       confirmMessage: "Cool, Carry on Reading",
     });
+    clearInterval(this.timer);
   };
 
   private handleConfirmClick = () => {
@@ -31,7 +39,30 @@ class App extends Component<{}, IState> {
       confirmOpen: true,
       confirmMessage: "Take a break, I'm sure you will .....",
     });
+    clearInterval(this.timer);
   };
+
+  private handleTimerTick() {
+    this.setState(
+      {
+        confirmMessage: `Please hit the confirm button ${this.state.countDown} secs to go`,
+        countDown: this.state.countDown - 1,
+      },
+      () => {
+        if (this.state.countDown <= 0) {
+          clearInterval(this.timer);
+          this.setState({
+            confirmMessage: "Too late to confirm!",
+            confirmVisible: false,
+          });
+        }
+      }
+    );
+  }
+
+  componentDidMount() {
+    this.timer = window.setInterval(() => this.handleTimerTick(), 1000);
+  }
   public render() {
     return (
       <div className="App">
@@ -50,7 +81,9 @@ class App extends Component<{}, IState> {
           </a>
         </header>
         <p>{this.state.confirmMessage}</p>
-        <button onClick={this.handleConfirmClick}>Confirm</button>
+        {this.state.confirmVisible && (
+          <button onClick={this.handleConfirmClick}>Confirm</button>
+        )}
         <Confirm
           title="React and TypeScript"
           content="Are you sure you want to learn react and typescript?"
